@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monitoring-deployment
+  namespace: otus-ms-hw-mn
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: monitoring-app
+      version: "0.0.1"
+  template:
+    metadata:
+      labels:
+        app: monitoring-app
+        version: "0.0.1"
+    spec:
+      containers:
+        - name: monitoring-app
+          image: smith1984/otus_ms_hw_mn:0.0.1
+          ports:
+              - containerPort: 8090
