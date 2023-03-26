@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: metrics-monitor
+  namespace: otus-ms-hw-mn
+  labels:
+    app: metrics-monitor
+spec:
+  endpoints:
+    - port: metrics
+      scrapeTimeout: 30s
+      path: /actuator/prometheus
+  namespaceSelector:
+    matchNames:
+      - otus-ms-hw-mn
+  selector:
+    matchLabels:
+      app: monitoring-app
+  
